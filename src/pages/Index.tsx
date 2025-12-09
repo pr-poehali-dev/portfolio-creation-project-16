@@ -51,6 +51,9 @@ const Index = () => {
             <button onClick={() => scrollToSection('results')} className="text-sm font-medium hover:text-primary transition-colors">
               Результаты
             </button>
+            <button onClick={() => scrollToSection('portfolio')} className="text-sm font-medium hover:text-primary transition-colors">
+              Портфолио
+            </button>
             <button onClick={() => scrollToSection('reviews')} className="text-sm font-medium hover:text-primary transition-colors">
               Отзывы
             </button>
@@ -297,7 +300,131 @@ const Index = () => {
         </div>
       </section>
 
-      <section id="reviews" className="py-20 px-4 bg-white">
+      <section id="portfolio" className="py-20 px-4 bg-white">
+        <div className="container mx-auto max-w-6xl">
+          <div className="text-center mb-16 animate-fade-in">
+            <Badge className="mb-4 bg-accent/10 text-accent border-0">
+              <Icon name="Briefcase" size={16} className="mr-1" />
+              Портфолио
+            </Badge>
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">Примеры работ</h2>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              Реальные кейсы с измеримыми результатами
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            {[
+              {
+                title: "Косметология — Карина Коростылева",
+                industry: "Красота и здоровье",
+                metrics: [
+                  { label: "Рост продаж", value: "×2.5", icon: "TrendingUp" },
+                  { label: "Подписчики", value: "+450%", icon: "Users" },
+                  { label: "Охваты", value: "+380%", icon: "Eye" }
+                ],
+                description: "Комплексное продвижение косметологического кабинета в Instagram и VK. Разработка контент-стратегии, таргетированная реклама, работа с блогерами.",
+                tags: ["Instagram", "VK", "Таргет"],
+                color: "from-pink-500 to-purple-500"
+              },
+              {
+                title: "Мебель под заказ — Дмитрий Коробёв",
+                industry: "Производство",
+                metrics: [
+                  { label: "Заявки", value: "+320%", icon: "MessageSquare" },
+                  { label: "Средний чек", value: "+45%", icon: "DollarSign" },
+                  { label: "Повторные заказы", value: "+180%", icon: "RefreshCw" }
+                ],
+                description: "Построение бренда мебельной мастерской с нуля. Запуск рекламных кампаний, создание визуального контента, воронка продаж через соцсети.",
+                tags: ["Instagram", "Telegram", "Контент"],
+                color: "from-amber-500 to-orange-500"
+              },
+              {
+                title: "Автомойка — Виталий Рыбяков",
+                industry: "Автосервис",
+                metrics: [
+                  { label: "Новые клиенты", value: "+250%", icon: "UserPlus" },
+                  { label: "Выручка", value: "×2", icon: "TrendingUp" },
+                  { label: "Лояльность", value: "+90%", icon: "Heart" }
+                ],
+                description: "SMM-стратегия для автомойки: геотаргетинг, система лояльности через соцсети, UGC-контент от клиентов, акции и конкурсы.",
+                tags: ["VK", "Instagram", "Геотаргет"],
+                color: "from-blue-500 to-cyan-500"
+              },
+              {
+                title: "Онлайн-школа иностранных языков",
+                industry: "Образование",
+                metrics: [
+                  { label: "Студенты", value: "+400%", icon: "GraduationCap" },
+                  { label: "Конверсия", value: "+65%", icon: "Target" },
+                  { label: "ROI рекламы", value: "×4.2", icon: "BarChart3" }
+                ],
+                description: "Масштабирование онлайн-школы: запуск воронок продаж, вебинары, email-маркетинг через соцсети, партнёрские программы с блогерами.",
+                tags: ["Instagram", "YouTube", "Вебинары"],
+                color: "from-emerald-500 to-teal-500"
+              }
+            ].map((project, index) => (
+              <Card 
+                key={index} 
+                className="overflow-hidden hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 animate-scale-in border-0"
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                <div className={`h-2 bg-gradient-to-r ${project.color}`}></div>
+                <div className="p-8">
+                  <div className="flex items-start justify-between mb-4">
+                    <div>
+                      <h3 className="text-2xl font-bold mb-2">{project.title}</h3>
+                      <Badge variant="secondary" className="text-xs">
+                        {project.industry}
+                      </Badge>
+                    </div>
+                    <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${project.color} flex items-center justify-center`}>
+                      <Icon name="Sparkles" size={24} className="text-white" />
+                    </div>
+                  </div>
+
+                  <p className="text-muted-foreground mb-6 leading-relaxed">
+                    {project.description}
+                  </p>
+
+                  <div className="grid grid-cols-3 gap-4 mb-6">
+                    {project.metrics.map((metric, idx) => (
+                      <div key={idx} className="text-center">
+                        <div className="w-10 h-10 mx-auto mb-2 rounded-lg bg-primary/10 flex items-center justify-center">
+                          <Icon name={metric.icon} size={20} className="text-primary" />
+                        </div>
+                        <p className="text-xl font-bold text-primary mb-1">{metric.value}</p>
+                        <p className="text-xs text-muted-foreground">{metric.label}</p>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="flex flex-wrap gap-2">
+                    {project.tags.map((tag, idx) => (
+                      <Badge key={idx} variant="outline" className="text-xs">
+                        {tag}
+                      </Badge>
+                    ))}
+                  </div>
+                </div>
+              </Card>
+            ))}
+          </div>
+
+          <div className="text-center mt-12 animate-fade-in">
+            <Button 
+              size="lg"
+              className="bg-gradient-to-r from-primary to-secondary text-white hover:opacity-90"
+              onClick={() => scrollToSection('contact')}
+            >
+              <Icon name="Rocket" size={20} className="mr-2" />
+              Обсудить ваш проект
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      <section id="reviews" className="py-20 px-4 bg-gradient-to-br from-primary/5 via-secondary/5 to-accent/5">
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-16 animate-fade-in">
             <Badge className="mb-4 bg-secondary/10 text-secondary border-0">
