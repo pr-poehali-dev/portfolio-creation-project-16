@@ -1,12 +1,359 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import Icon from "@/components/ui/icon";
 
 const Index = () => {
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    element?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4 color-black text-black">Добро пожаловать!</h1>
-        <p className="text-xl text-gray-600">тут будет отображаться ваш проект</p>
-      </div>
+    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-orange-50">
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-purple-100">
+        <div className="container mx-auto px-4 py-4 flex justify-between items-center">
+          <h1 className="text-2xl font-bold bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
+            SMM Portfolio
+          </h1>
+          <div className="flex gap-6">
+            <button onClick={() => scrollToSection('about')} className="text-sm font-medium hover:text-primary transition-colors">
+              Обо мне
+            </button>
+            <button onClick={() => scrollToSection('results')} className="text-sm font-medium hover:text-primary transition-colors">
+              Результаты
+            </button>
+            <button onClick={() => scrollToSection('reviews')} className="text-sm font-medium hover:text-primary transition-colors">
+              Отзывы
+            </button>
+            <button onClick={() => scrollToSection('contact')} className="text-sm font-medium hover:text-primary transition-colors">
+              Контакты
+            </button>
+          </div>
+        </div>
+      </nav>
+
+      <section className="pt-32 pb-20 px-4">
+        <div className="container mx-auto max-w-6xl">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div className="animate-fade-in">
+              <Badge className="mb-4 bg-gradient-to-r from-primary to-secondary text-white border-0">
+                <Icon name="Sparkles" size={16} className="mr-1" />
+                5 лет опыта
+              </Badge>
+              <h2 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+                Ваш бизнес
+                <span className="block bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent animate-gradient bg-[length:200%_auto]">
+                  растёт ×2
+                </span>
+              </h2>
+              <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
+                SMM-менеджер, который превращает ваши соцсети в мощный инструмент продаж. 
+                Благодаря моей работе выручка удваивается, а охваты растут постоянно.
+              </p>
+              <div className="flex gap-4">
+                <Button 
+                  size="lg" 
+                  className="bg-gradient-to-r from-primary to-secondary hover:opacity-90 transition-opacity text-white"
+                  onClick={() => scrollToSection('contact')}
+                >
+                  <Icon name="MessageCircle" size={20} className="mr-2" />
+                  Связаться
+                </Button>
+                <Button 
+                  size="lg" 
+                  variant="outline"
+                  onClick={() => scrollToSection('results')}
+                  className="border-2 border-primary text-primary hover:bg-primary hover:text-white"
+                >
+                  <Icon name="TrendingUp" size={20} className="mr-2" />
+                  Результаты
+                </Button>
+              </div>
+            </div>
+
+            <div className="relative animate-scale-in">
+              <div className="absolute inset-0 bg-gradient-to-r from-primary/20 via-secondary/20 to-accent/20 blur-3xl rounded-full"></div>
+              <img 
+                src="https://cdn.poehali.dev/files/пор1.jpg" 
+                alt="SMM Manager"
+                className="relative rounded-3xl shadow-2xl w-full object-cover aspect-square"
+              />
+              <div className="absolute -bottom-6 -right-6 bg-white p-6 rounded-2xl shadow-xl animate-slide-up">
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 rounded-full bg-gradient-to-r from-primary to-secondary flex items-center justify-center">
+                    <Icon name="TrendingUp" size={24} className="text-white" />
+                  </div>
+                  <div>
+                    <p className="text-2xl font-bold text-primary">×2</p>
+                    <p className="text-sm text-muted-foreground">выручка</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="about" className="py-20 px-4 bg-white">
+        <div className="container mx-auto max-w-6xl">
+          <div className="text-center mb-16 animate-fade-in">
+            <Badge className="mb-4 bg-primary/10 text-primary border-0">
+              <Icon name="User" size={16} className="mr-1" />
+              Обо мне
+            </Badge>
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">Экспертиза, которой доверяют</h2>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              5 лет превращаю социальные сети в источник стабильного роста для бизнеса
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              {
+                icon: "Target",
+                title: "Стратегия роста",
+                description: "Разрабатываю индивидуальные стратегии продвижения, которые приводят к реальным результатам"
+              },
+              {
+                icon: "BarChart3",
+                title: "Аналитика данных",
+                description: "Глубокий анализ метрик и оптимизация каждой кампании для максимальной эффективности"
+              },
+              {
+                icon: "Zap",
+                title: "Контент, который продаёт",
+                description: "Создаю контент, который не просто набирает лайки, а конвертирует аудиторию в клиентов"
+              }
+            ].map((item, index) => (
+              <Card 
+                key={index} 
+                className="p-8 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-2 border-transparent hover:border-primary/20 animate-slide-up"
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center mb-6">
+                  <Icon name={item.icon} size={32} className="text-white" />
+                </div>
+                <h3 className="text-2xl font-bold mb-4">{item.title}</h3>
+                <p className="text-muted-foreground leading-relaxed">{item.description}</p>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="results" className="py-20 px-4 bg-gradient-to-br from-primary/5 via-secondary/5 to-accent/5">
+        <div className="container mx-auto max-w-6xl">
+          <div className="text-center mb-16 animate-fade-in">
+            <Badge className="mb-4 bg-gradient-to-r from-primary to-secondary text-white border-0">
+              <Icon name="Award" size={16} className="mr-1" />
+              Результаты
+            </Badge>
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">Цифры говорят сами за себя</h2>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              Измеримые достижения, которые влияют на ваш бизнес
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+            {[
+              { icon: "TrendingUp", value: "×2", label: "Рост выручки", color: "from-primary to-secondary" },
+              { icon: "Users", value: "+350%", label: "Охваты", color: "from-secondary to-accent" },
+              { icon: "Heart", value: "+500%", label: "Вовлечённость", color: "from-accent to-primary" },
+              { icon: "Target", value: "98%", label: "Точность таргета", color: "from-primary to-accent" }
+            ].map((stat, index) => (
+              <Card 
+                key={index} 
+                className="p-8 text-center hover:shadow-xl transition-all duration-300 hover:scale-105 animate-scale-in border-0"
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                <div className={`w-20 h-20 mx-auto mb-4 rounded-2xl bg-gradient-to-br ${stat.color} flex items-center justify-center`}>
+                  <Icon name={stat.icon} size={40} className="text-white" />
+                </div>
+                <p className="text-4xl font-bold mb-2 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                  {stat.value}
+                </p>
+                <p className="text-muted-foreground font-medium">{stat.label}</p>
+              </Card>
+            ))}
+          </div>
+
+          <Card className="p-12 bg-white animate-fade-in">
+            <div className="grid md:grid-cols-2 gap-8">
+              <div>
+                <h3 className="text-3xl font-bold mb-6">Как я достигаю результатов</h3>
+                <ul className="space-y-4">
+                  {[
+                    "Глубокий анализ целевой аудитории и конкурентов",
+                    "Разработка уникальной контент-стратегии",
+                    "Таргетированная реклама с А/Б тестированием",
+                    "Постоянная оптимизация на основе аналитики",
+                    "Построение активного комьюнити вокруг бренда"
+                  ].map((item, index) => (
+                    <li key={index} className="flex items-start gap-3">
+                      <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mt-1">
+                        <Icon name="Check" size={16} className="text-primary" />
+                      </div>
+                      <span className="text-lg">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="relative">
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-secondary/10 rounded-3xl"></div>
+                <div className="relative p-8">
+                  <div className="space-y-6">
+                    <div className="bg-white p-6 rounded-2xl shadow-lg">
+                      <div className="flex items-center justify-between mb-3">
+                        <span className="font-semibold">Instagram</span>
+                        <Icon name="Instagram" size={24} className="text-secondary" />
+                      </div>
+                      <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
+                        <div className="h-full bg-gradient-to-r from-primary to-secondary w-[95%] animate-gradient bg-[length:200%_auto]"></div>
+                      </div>
+                      <p className="text-sm text-muted-foreground mt-2">95% достижение целей</p>
+                    </div>
+                    <div className="bg-white p-6 rounded-2xl shadow-lg">
+                      <div className="flex items-center justify-between mb-3">
+                        <span className="font-semibold">VK</span>
+                        <Icon name="MessageCircle" size={24} className="text-primary" />
+                      </div>
+                      <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
+                        <div className="h-full bg-gradient-to-r from-secondary to-accent w-[88%] animate-gradient bg-[length:200%_auto]"></div>
+                      </div>
+                      <p className="text-sm text-muted-foreground mt-2">88% достижение целей</p>
+                    </div>
+                    <div className="bg-white p-6 rounded-2xl shadow-lg">
+                      <div className="flex items-center justify-between mb-3">
+                        <span className="font-semibold">Telegram</span>
+                        <Icon name="Send" size={24} className="text-accent" />
+                      </div>
+                      <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
+                        <div className="h-full bg-gradient-to-r from-accent to-primary w-[92%] animate-gradient bg-[length:200%_auto]"></div>
+                      </div>
+                      <p className="text-sm text-muted-foreground mt-2">92% достижение целей</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </Card>
+        </div>
+      </section>
+
+      <section id="reviews" className="py-20 px-4 bg-white">
+        <div className="container mx-auto max-w-6xl">
+          <div className="text-center mb-16 animate-fade-in">
+            <Badge className="mb-4 bg-secondary/10 text-secondary border-0">
+              <Icon name="MessageSquare" size={16} className="mr-1" />
+              Отзывы
+            </Badge>
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">Что говорят клиенты</h2>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              Реальные истории успеха от довольных партнёров
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              {
+                name: "Алексей Морозов",
+                role: "Основатель интернет-магазина",
+                text: "За 6 месяцев работы продажи выросли в 2.5 раза! Профессиональный подход к стратегии и внимание к деталям впечатлили. Рекомендую всем, кто хочет реальных результатов.",
+                rating: 5
+              },
+              {
+                name: "Мария Соколова",
+                role: "Владелица салона красоты",
+                text: "Наконец-то Instagram начал работать на нас! Запись клиентов увеличилась на 80%, охваты растут каждую неделю. Спасибо за качественную работу и регулярную аналитику.",
+                rating: 5
+              },
+              {
+                name: "Дмитрий Волков",
+                role: "CEO онлайн-школы",
+                text: "Пришли с полностью мёртвыми соцсетями. Через 4 месяца — активное комьюнити, постоянный поток заявок и рост узнаваемости бренда. Результат превзошёл все ожидания!",
+                rating: 5
+              }
+            ].map((review, index) => (
+              <Card 
+                key={index} 
+                className="p-8 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 animate-slide-up"
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                <div className="flex mb-4">
+                  {[...Array(review.rating)].map((_, i) => (
+                    <Icon key={i} name="Star" size={20} className="text-yellow-400 fill-yellow-400" />
+                  ))}
+                </div>
+                <p className="text-lg mb-6 leading-relaxed text-muted-foreground italic">
+                  "{review.text}"
+                </p>
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
+                    <span className="text-white font-bold text-lg">{review.name[0]}</span>
+                  </div>
+                  <div>
+                    <p className="font-bold">{review.name}</p>
+                    <p className="text-sm text-muted-foreground">{review.role}</p>
+                  </div>
+                </div>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" className="py-20 px-4 bg-gradient-to-br from-primary via-secondary to-accent">
+        <div className="container mx-auto max-w-4xl text-center text-white animate-fade-in">
+          <Icon name="Rocket" size={64} className="mx-auto mb-6" />
+          <h2 className="text-4xl md:text-6xl font-bold mb-6">
+            Готовы удвоить свою выручку?
+          </h2>
+          <p className="text-xl mb-12 opacity-90 max-w-2xl mx-auto">
+            Давайте обсудим, как я могу помочь вашему бизнесу расти через социальные сети
+          </p>
+          
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+            <Button 
+              size="lg" 
+              className="bg-white text-primary hover:bg-gray-100 text-lg px-8 py-6"
+            >
+              <Icon name="Mail" size={24} className="mr-2" />
+              info@smm-portfolio.ru
+            </Button>
+            <Button 
+              size="lg" 
+              variant="outline"
+              className="border-2 border-white text-white hover:bg-white hover:text-primary text-lg px-8 py-6"
+            >
+              <Icon name="Phone" size={24} className="mr-2" />
+              +7 (999) 123-45-67
+            </Button>
+          </div>
+
+          <div className="flex gap-6 justify-center">
+            {[
+              { icon: "Instagram", label: "@smm_portfolio" },
+              { icon: "MessageCircle", label: "VK" },
+              { icon: "Send", label: "Telegram" },
+              { icon: "Linkedin", label: "LinkedIn" }
+            ].map((social, index) => (
+              <button
+                key={index}
+                className="w-14 h-14 rounded-full bg-white/20 hover:bg-white hover:text-primary transition-all duration-300 flex items-center justify-center backdrop-blur-sm"
+              >
+                <Icon name={social.icon} size={24} />
+              </button>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <footer className="py-8 px-4 bg-gray-900 text-white text-center">
+        <p className="text-sm opacity-70">
+          © 2024 SMM Portfolio. Все права защищены.
+        </p>
+      </footer>
     </div>
   );
 };
