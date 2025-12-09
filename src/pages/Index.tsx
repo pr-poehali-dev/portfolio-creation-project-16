@@ -319,14 +319,14 @@ const Index = () => {
                 rating: 5
               },
               {
-                name: "Карина Коростылева",
-                role: "косметолог",
+                name: "Дмитрий Короблёв",
+                role: "мебель под заказ",
                 text: "Наконец-то Instagram начал работать на нас! Запись клиентов увеличилась на 80%, охваты растут каждую неделю. Спасибо за качественную работу и регулярную аналитику.",
                 rating: 5
               },
               {
-                name: "Карина Коростылева",
-                role: "косметолог",
+                name: "Виталий Рыбяков",
+                role: "автомойка",
                 text: "Пришли с полностью мёртвыми соцсетями. Через 4 месяца — активное комьюнити, постоянный поток заявок и рост узнаваемости бренда. Результат превзошёл все ожидания!",
                 rating: 5
               }
@@ -373,34 +373,41 @@ const Index = () => {
             <Button 
               size="lg" 
               className="bg-white text-primary hover:bg-gray-100 text-lg px-8 py-6"
+              asChild
             >
-              <Icon name="Mail" size={24} className="mr-2" />
-              info@smm-portfolio.ru
+              <a href="https://vk.com/id330256589" target="_blank" rel="noopener noreferrer">
+                <Icon name="MessageCircle" size={24} className="mr-2" />
+                @id330256589
+              </a>
             </Button>
             <Button 
               size="lg" 
               variant="outline"
               className="border-2 border-white text-white hover:bg-white hover:text-primary text-lg px-8 py-6"
+              asChild
             >
-              <Icon name="Phone" size={24} className="mr-2" />
-              +7 (999) 123-45-67
+              <a href="tel:+79009717308">
+                <Icon name="Phone" size={24} className="mr-2" />
+                +7 (900) 971-73-08
+              </a>
             </Button>
           </div>
 
           <div className="flex gap-6 justify-center">
-            {[
-              { icon: "Instagram", label: "@smm_portfolio" },
-              { icon: "MessageCircle", label: "VK" },
-              { icon: "Send", label: "Telegram" },
-              { icon: "Linkedin", label: "LinkedIn" }
-            ].map((social, index) => (
-              <button
-                key={index}
-                className="w-14 h-14 rounded-full bg-white/20 hover:bg-white hover:text-primary transition-all duration-300 flex items-center justify-center backdrop-blur-sm"
-              >
-                <Icon name={social.icon} size={24} />
-              </button>
-            ))}
+            <a
+              href="https://vk.com/id330256589"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-14 h-14 rounded-full bg-white/20 hover:bg-white hover:text-primary transition-all duration-300 flex items-center justify-center backdrop-blur-sm"
+            >
+              <Icon name="MessageCircle" size={24} />
+            </a>
+            <a
+              href="tel:+79009717308"
+              className="w-14 h-14 rounded-full bg-white/20 hover:bg-white hover:text-primary transition-all duration-300 flex items-center justify-center backdrop-blur-sm"
+            >
+              <Icon name="Phone" size={24} />
+            </a>
           </div>
         </div>
       </section>
