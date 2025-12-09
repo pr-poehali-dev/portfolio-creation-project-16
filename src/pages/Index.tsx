@@ -2,11 +2,39 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import Icon from "@/components/ui/icon";
+import { useState } from "react";
 
 const Index = () => {
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     element?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const [editingIndex, setEditingIndex] = useState<number | null>(null);
+  const [achievements, setAchievements] = useState([
+    "Глубокий анализ целевой аудитории и конкурентов",
+    "Разработка уникальной контент-стратегии",
+    "Таргетированная реклама с А/Б тестированием",
+    "Постоянная оптимизация на основе аналитики",
+    "Построение активного комьюнити вокруг бренда"
+  ]);
+  const [editValue, setEditValue] = useState("");
+
+  const handleEdit = (index: number) => {
+    setEditingIndex(index);
+    setEditValue(achievements[index]);
+  };
+
+  const handleSave = (index: number) => {
+    const newAchievements = [...achievements];
+    newAchievements[index] = editValue;
+    setAchievements(newAchievements);
+    setEditingIndex(null);
+  };
+
+  const handleCancel = () => {
+    setEditingIndex(null);
+    setEditValue("");
   };
 
   return (
@@ -183,18 +211,46 @@ const Index = () => {
               <div>
                 <h3 className="text-3xl font-bold mb-6">Как я достигаю результатов</h3>
                 <ul className="space-y-4">
-                  {[
-                    "Глубокий анализ целевой аудитории и конкурентов",
-                    "Разработка уникальной контент-стратегии",
-                    "Таргетированная реклама с А/Б тестированием",
-                    "Постоянная оптимизация на основе аналитики",
-                    "Построение активного комьюнити вокруг бренда"
-                  ].map((item, index) => (
-                    <li key={index} className="flex items-start gap-3">
+                  {achievements.map((item, index) => (
+                    <li key={index} className="flex items-start gap-3 group">
                       <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mt-1">
                         <Icon name="Check" size={16} className="text-primary" />
                       </div>
-                      <span className="text-lg">{item}</span>
+                      {editingIndex === index ? (
+                        <div className="flex-1 flex gap-2">
+                          <input
+                            type="text"
+                            value={editValue}
+                            onChange={(e) => setEditValue(e.target.value)}
+                            className="flex-1 text-lg border-2 border-primary rounded-lg px-3 py-1 focus:outline-none focus:ring-2 focus:ring-primary/50"
+                            autoFocus
+                          />
+                          <button
+                            onClick={() => handleSave(index)}
+                            className="px-3 py-1 bg-primary text-white rounded-lg hover:opacity-90 transition-opacity"
+                          >
+                            <Icon name="Check" size={18} />
+                          </button>
+                          <button
+                            onClick={handleCancel}
+                            className="px-3 py-1 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors"
+                          >
+                            <Icon name="X" size={18} />
+                          </button>
+                        </div>
+                      ) : (
+                        <span
+                          className="text-lg cursor-pointer hover:text-primary transition-colors flex-1 relative"
+                          onClick={() => handleEdit(index)}
+                        >
+                          {item}
+                          <Icon
+                            name="Edit2"
+                            size={16}
+                            className="inline-block ml-2 opacity-0 group-hover:opacity-100 transition-opacity text-primary"
+                          />
+                        </span>
+                      )}
                     </li>
                   ))}
                 </ul>
